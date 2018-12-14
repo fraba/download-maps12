@@ -18,6 +18,7 @@ function download_ife {
 		echo "##########################################################################"
 		echo "Something went wrong when downloading the file. trying again"
 		echo "##########################################################################"
+		rm zip/$1/$i-$1.zip
 		sleep 5
 	    else
 		break
