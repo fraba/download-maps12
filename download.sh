@@ -18,7 +18,7 @@ function download_ife {
 		echo "##########################################################################"
 		echo "Something went wrong when downloading the file. trying again"
 		echo "##########################################################################"
-		sleep 120
+		sleep 5
 	    else
 		break
 	    fi
