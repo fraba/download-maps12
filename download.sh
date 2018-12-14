@@ -6,19 +6,23 @@ WGET="wget -c -nc -w 5 --random-wait --tries=10 "
 ##Download the electoral shapefiles
 function download_ife {
   for (( i = 1 ; i <= 32 ; i++ ))
-    do 
-      echo $i
-      if [ ! -f zip/$1/$i-$1.zip ];
-        then
-          $WGET $2$i -O zip/$1/$i-$1.zip
-      fi
-      if [ ! -s zip/$1/$i-$1.zip ]
-      then
-        echo "##########################################################################"
-	echo "Something went wrong when downloading the file. make clean"
-        echo "##########################################################################"
-	exit 1
-      fi
+  do
+      while :
+	    do
+	    echo $i
+	    if [ ! -f zip/$1/$i-$1.zip ];
+	    then
+		$WGET $2$i -O zip/$1/$i-$1.zip
+	    fi
+	    if [ ! -s zip/$1/$i-$1.zip ]; then
+		echo "##########################################################################"
+		echo "Something went wrong when downloading the file. trying again"
+		echo "##########################################################################"
+		sleep 120
+	    else
+		break
+	    fi
+	    done
     done 
 }
 
